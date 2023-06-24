@@ -1,0 +1,29 @@
+.button {
+    font-family: 'Sage Sans';
+    font-size: 15px;
+    font-weight: bolder;
+    height: 40px;
+    width: 110px;
+    border-radius: 2em;
+    position: absolute;
+    left: 24%;
+    top: 53%;
+    border-color: transparent;
+    color:rgb(255, 255, 255);
+    background-color: rgb(225, 74, 101);
+}
+
+.button:hover{
+    color: rgb(255, 255, 255);
+    background-color: rgba(225, 74, 102, 0.815);
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+.h5 {
+    position: absolute;
+    color: rgba(225, 74, 102, 0.815);
+    left: 35%;
+    top:70%;
+    text-decoration: line-through;
+}
