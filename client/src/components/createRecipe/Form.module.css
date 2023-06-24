@@ -1,0 +1,73 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 70px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    padding: 20px;
+    border-color: transparent;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 2px 18px 2px rgba(184, 184, 184, 0.482);
+  }
+  
+  .label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    height: 60px;
+    width: 300px;
+    border-radius: 0.5em;
+  }
+  
+  .addcustom {
+    display: flex;
+    padding-top: 10px;
+    justify-content: center;
+  }
+
+  .buton {
+    font-family: 'Sage Sans';
+    margin-top: 10px;
+    border-radius: 5px;
+    border-color: rgb(174, 174, 174);
+    border-style: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .buton:hover {
+    background-color: rgb(255, 86, 86);
+    transition: 1s ease;
+  }
+
+  .error {
+    color: red;
+  }
+
+.p {
+  display: inline;
+  margin-left: 5px;
+  margin-right: 5px;
+  color: rgb(177, 177, 177);
+}
+
+.custom {
+  font-family: 'Wedges';
+  background: linear-gradient(to right, rgb(255,247,125), rgb(184,219,255), rgb(153,102,204));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 35px;
+}
