@@ -1,0 +1,65 @@
+.search {
+    position: absolute;
+    right: 5%;
+    top: 31px
+}
+
+.details {
+    margin-top: 260px;
+    margin-left: 20%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-width: 800px;
+    font-size: 18px;
+}
+
+.foto {
+    position: absolute;
+    width: 300px;
+    height: auto;
+    clip-path: circle(42% at 50% 50%);
+    left: 40%;
+    top: 23%;
+}
+
+.steptitle {
+    font-size: large;
+    background: linear-gradient(to right, transparent, rgb(184,219,255), rgb(255, 247, 125), rgb(153,102,204), transparent);
+}
+
+.title {
+    background: linear-gradient(to right,rgb(184,219,255), rgb(153,102,204));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.description {
+    margin-top: 1px;
+    line-height: 1.5;
+}
+
+.id {
+    background: linear-gradient(to right,rgb(184,219,255), rgb(153,102,204));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: -10px;
+}
+
+.tohome {
+    position: absolute;
+    left: 4.5%;
+    top: 23%;
+    font-family: 'Sage Sans';
+    border-color: transparent;
+    height: 35px;
+    width: 75px;
+    border-radius: 2em;
+    background-color: rgb(184,219,255);
+}
+
+.tohome:hover {
+    background-color: rgb(153,102,204);
+    transition: 1s ease;
+    cursor: pointer;
+}
