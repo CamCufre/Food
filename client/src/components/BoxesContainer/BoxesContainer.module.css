@@ -1,0 +1,12 @@
+.container{
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    grid-gap: 2.5rem;
+    margin-left: 13%;
+    margin-top: 23%;
+    padding-bottom: 30px
+};
+
+.error {
+    margin-left: 100px;
+}
