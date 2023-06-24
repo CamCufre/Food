@@ -1,0 +1,27 @@
+.search {
+    position: absolute;
+    right: 5%;
+    top: 31px
+}
+
+.title {
+    font-family: 'Wedges';
+    position: absolute;
+    background: linear-gradient(to right, rgb(255,247,125), rgb(184,219,255), rgb(153,102,204));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    left: 24%;
+    top: 18.5%
+  }
+
+  .title2 {
+    position: absolute;
+    font-family: 'Wedges';
+    left: 24.2%;
+    top: 19%
+  }
+ 
+  .titles {
+    display: flex;
+  }
+ 
