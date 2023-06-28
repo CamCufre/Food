@@ -1,12 +1,42 @@
-import React, { useState, useEffect } from "react";
-import { connect } from 'react-redux';
-import { createRecipe, getDietTypes } from '../redux/actions';
-import { Link } from 'react-router-dom';
-import NavBar from "../navbar/NavBar";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { getDietTypes, createRecipe } from "../redux/actions";
+import ValidateForm from "../Validation/Validation";
+import NavBar from '../navbar/NavBar';
 import style from './Form.module.css';
-import {validateTitleLength, validateDescriptionLength, validateSteps, validateImageURL, validateHealthscore, validateDiets, validateDuplicateDiet} from '../Validation/Validation.jsx';
+import image from '../assets/bg-images/form-img.png';
+import { Link } from "react-router-dom";
 
-const Form = ({ createRecipe, getDietTypes, dietTypes }) => {
+const Form = ({ dietTypes, getDietTypes, createRecipe }) => {
+
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (formSubmitted) {
+      setFormData({
+        name: "",
+        description: "",
+        steps: [],
+        image: "",
+        diets: [],
+        healthscore: "0"
+      });
+      setErrors({});
+      setNewStep("");
+      setDuplicateDietError("");
+      setFormSubmitted(false);
+    }
+  }, [formSubmitted]);
+
+  useEffect(() => {
+    const body = document.querySelector("body");
+    body.style.background = "white";
+
+    return () => {
+      body.style.background = "";
+    };
+  }, []);
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -16,256 +46,263 @@ const Form = ({ createRecipe, getDietTypes, dietTypes }) => {
     healthscore: ""
   });
 
-  const [formErrors, setFormErrors] = useState({
-    name: '',
-    description: '',
-    steps: '',
-    image: '',
-    healthscore: '',
-    diets: ''
-  });
-
-  const validateForm = () => {
-    const errors = {
-      name: validateTitleLength(formData),
-      description: validateDescriptionLength(formData),
-      steps: validateSteps(formData),
-      image: validateImageURL(formData),
-      healthscore: validateHealthscore(formData),
-      diets: validateDiets(formData),
-      duplicateDiet: validateDuplicateDiet(formData)
-    };
-  
-    setFormErrors(errors);
-  };
-
-  const [manualDiet, setManualDiet] = useState(""); 
-
-  useEffect(() => {
-    const body = document.querySelector("body");
-    body.style.background = "white";
-
-    // Limpia el estilo de fondo al desmontar el componente
-    return () => {
-      body.style.background = "";
-    };
-  }, []);
+  const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     getDietTypes();
-  }, []);
+  }, [getDietTypes]);
+
+  const [newStep, setNewStep] = useState("");
+
+  const [duplicateDietError, setDuplicateDietError] = useState("");
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
+
+    setFormData((formData) => ({
+      ...formData,
       [name]: value
     }));
-    validateForm();
-  };
 
-  const handleStepChange = (index, value) => {
-    setFormData((prevFormData) => {
-      const updatedSteps = [...prevFormData.steps];
-      updatedSteps[index] = value;
-      return {
-        ...prevFormData,
-        steps: updatedSteps
-      };
+    const validationErrors = ValidateForm({
+      ...formData,
+      [name]: value
     });
-    validateForm();
+    setErrors(validationErrors);
   };
 
   const handleAddStep = () => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      steps: [...prevFormData.steps, ""]
-    }));
+    if (newStep.trim() !== "") {
+      const newSteps = [...formData.steps, newStep];
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        steps: newSteps
+      }));
+      setNewStep("");
+
+      const validationErrors = ValidateForm({
+        ...formData,
+        steps: newSteps
+      });
+      setErrors(validationErrors);
+    }
   };
 
-  const handleCheckboxChange = (event) => {
-    const { value, checked } = event.target;
+  const handleRemoveStep = (index) => {
+    const newSteps = [...formData.steps];
+    newSteps.splice(index, 1);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      steps: newSteps
+    }));
+
+    const validationErrors = ValidateForm({
+      ...formData,
+      steps: newSteps
+    });
+    setErrors(validationErrors);
+  };
+
+  const handleStepInputChange = (event) => {
+    setNewStep(event.target.value);
+  };
+
+  const handleAddDiet = (diet) => {
+    const lowerCaseDiet = diet.toLowerCase();
+
+    if (formData.diets.includes(lowerCaseDiet)) {
+      setDuplicateDietError("Diet already added");
+      return;
+    }
+
+    setDuplicateDietError("");
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      diets: [...prevFormData.diets, lowerCaseDiet],
+      customDiet: ""
+    }));
+
+    const validationErrors = ValidateForm({
+      ...formData,
+      diets: [...formData.diets, lowerCaseDiet]
+    });
+    setErrors(validationErrors);
+  };
+
+  const handleRemoveDiet = (index) => {
     setFormData((prevFormData) => {
-      let updatedDiets = [...prevFormData.diets];
-      if (checked) {
-        updatedDiets.push(value);
-      } else {
-        updatedDiets = updatedDiets.filter((diet) => diet !== value);
-      }
-      return {
+      const updatedDiets = [...prevFormData.diets];
+      updatedDiets.splice(index, 1);
+
+      const updatedFormData = {
         ...prevFormData,
         diets: updatedDiets
       };
-    });
-    validateForm();
-  };
 
-  const handleAddManualDiet = (event) => {
-    event.preventDefault();
-    if (manualDiet) {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        diets: [...prevFormData.diets, manualDiet]
-      }));
-      setManualDiet(""); 
-    }
-    validateForm();
+      const validationErrors = ValidateForm(updatedFormData);
+      setErrors(validationErrors);
+
+      return updatedFormData;
+    });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const requiredFields = ["name", "description", "image", "healthscore"];
-    const incompleteFields = requiredFields.filter(
-      (field) => !formData[field]
-    );
-
-    const hasSteps = formData.steps.length > 0;
-    const hasDiets = formData.diets.length > 0;
-  
-    if (incompleteFields.length > 0 || !hasSteps || !hasDiets) {
-      let errorMessage = "Please fill in all fields:";
-      if (incompleteFields.length > 0) {
-        errorMessage += ` ${incompleteFields.join(",")}`;
-      }
-      if (!hasSteps) {
-        errorMessage += " Add at least one step.";
-      }
-      if (!hasDiets) {
-        errorMessage += " Add at least one diet.";
-      }
-      window.alert(errorMessage);
-      return;
+    if (Object.keys(errors).length === 0) {
+      createRecipe(formData);
+      setFormSubmitted(true);
+      alert("Recipe successfully Created!")
+    } else {
+      const missingFields = Object.keys(errors).join(", ");
+      const errorMessage = `Required to fill in all fields. Missing: ${missingFields}`;
+      alert(errorMessage);
     }
-  
-    createRecipe(formData);
-    resetForm();
-    window.alert("Recipe created successfully");
-  };
-
-  const resetForm = () => {
-    setFormData({
-      name: "",
-      description: "",
-      steps: [""],
-      image: "",
-      diets: [],
-      healthscore: ""
-    });
   };
 
   return (
     <div>
       <NavBar/>
-      <div className={style.container}>
-      <h1 className={style.custom}>Create your custom one!</h1>
+      <Link to='/home'>
+      <button className={style.tohome}>To Home</button>
+      </Link>
+      <img className={style.image} src={image} alt=''/>
       <form className={style.form} onSubmit={handleSubmit}>
-      <label className={style.label}>
-        Recipe title:
+      <label className={style.create}>Create your custom one!</label>
+        {/* <label className={style.title}>Recipe Title</label> */}
         <input
-          type="text"
+          className={style.input}
           name="name"
           value={formData.name}
           onChange={handleInputChange}
+          onBlur={handleInputChange}
+          placeholder="Recipe Title"
         />
-        {formErrors.name && <span className={style.error}>{formErrors.name}</span>}
-      </label>
-      <label className={style.label}>
-        Description:
+        {errors.name && <span className={style.error}>{errors.name}</span>}
+
+        {/* <label className={style.title}>Description</label> */}
         <textarea
-          className={style.description}
+          className={style.textarea}
           name="description"
           value={formData.description}
           onChange={handleInputChange}
-        ></textarea>
-        {formErrors.description && <span className={style.error}>{formErrors.description}</span>}
-      </label>
-      <label className={style.label}>
-        Steps:
+          onBlur={handleInputChange}
+          placeholder="Describe your recipe briefly"
+        />
+        {errors.description && <span className={style.error}>{errors.description}</span>}
+
+        {/* <label className={style.title}>Steps</label> */}
         {formData.steps.map((step, index) => (
-          <input
-            key={index}
-            type="text"
-            value={step}
-            onChange={(e) => handleStepChange(index, e.target.value)}
-          />
+          <div key={index}>
+            <input className={style.added} type="text" value={step} readOnly />
+            <button className={style.button} type="button" onClick={() => handleRemoveStep(index)}>
+              Remove
+            </button>
+          </div>
         ))}
-        <button className={style.buton} type="button" onClick={handleAddStep}>
-          Add step
-        </button>
-        {formErrors.steps && <span className={style.error}>{formErrors.steps}</span>}
-      </label>
-      <label className={style.label}>
-        Image URL:
+          <input
+            className={style.Xinput}
+            type="text"
+            value={newStep}
+            onChange={handleStepInputChange}
+            onBlur={handleStepInputChange}
+            placeholder="Steps..."
+          />
+          <button className={style.Xbutton} type="button" onClick={handleAddStep}>
+            Add Step
+          </button>
+        {errors.steps && <span className={style.error}>{errors.steps}</span>}
+
+        {/* <label className={style.title}>Diets</label> */}
+        <select
+          className={style.select}
+          name="diets"
+          value={""}
+          onChange={(event) => handleAddDiet(event.target.value)}
+        >
+          <option value="">Select Diet</option>
+          {dietTypes.map((diet) => (
+            <option key={diet.id} value={diet.name}>
+              {diet.name}
+            </option>
+          ))}
+        </select>
+        {formData.diets.map((diet, index) => (
+          <div key={index}>
+            <input className={style.added} type="text" value={diet} readOnly />
+            <button className={style.button} type="button" onClick={() => handleRemoveDiet(index)}>
+              Remove
+            </button>
+          </div>
+        ))}
         <input
+          className={style.Xinput}
           type="text"
+          placeholder="e.g. lemon diet"
+          value={formData.customDiet || ""}
+          onChange={(event) =>
+            setFormData((prevFormData) => ({
+              ...prevFormData,
+              customDiet: event.target.value
+            }))
+          }
+        />
+        <button
+          className={style.Xbutton}
+          type="button"
+          onClick={() => handleAddDiet(formData.customDiet)}
+        >
+          Add Custom Diet
+        </button>
+        {errors.diets && <span className={style.error}>{errors.diets}</span>}
+        {duplicateDietError && <span className={style.error}>{duplicateDietError}</span>}
+
+        {/* <label className={style.title}>Image URL</label> */}
+        <input
           name="image"
           value={formData.image}
+          type="text"
           onChange={handleInputChange}
+          onBlur={handleInputChange}
+          placeholder="Image URL"
+          className={style.input}
         />
-        {formErrors.image && <span className={style.error}>{formErrors.image}</span>}
-      </label>
-      <label className={style.label}>
-        Diets:
-        <div>
-          {dietTypes.map((diet) => (
-            <label key={diet.id}>
-              <input
-                type="checkbox"
-                name="diets"
-                value={diet.name}
-                checked={formData.diets.includes(diet.name)}
-                onChange={handleCheckboxChange}
-              />
-              {diet.name}
-            </label>
-          ))}
-          {formData.diets.map((diet, index) => (
-            <p className={style.p} key={index}>{diet}</p>
-          ))}
-          <div className={style.addcustom}> <input
-            type="text"
-            placeholder="Add custom diet"
-            value={manualDiet}
-            onChange={(e) => setManualDiet(e.target.value)}
-          />
-          <button className={style.buton} type="button" onClick={handleAddManualDiet}>
-            Add
-          </button></div>
-         
-        </div>
-        {formErrors.diets && <span className={style.error}>{formErrors.diets}</span>}
-        {formErrors.duplicateDiet && <span className={style.error}>{formErrors.duplicateDiet}</span>}
-      </label>
+        {errors.image && <span className={style.error}>{errors.image}</span>}
 
-      <label className={style.label}>
-        Healthscore:
+        {/* <label className={style.title}>Health-Score</label> */}
         <input
-          type="number"
           name="healthscore"
           value={formData.healthscore}
+          type="number"
           onChange={handleInputChange}
+          onBlur={handleInputChange}
+          placeholder="Health-Score (0 - 100)"
+          className={style.input}
         />
-        {formErrors.healthscore && <span className={style.error}>{formErrors.healthscore}</span>}
-      </label>
-      <button className={style.buton} type="submit">Create Recipe!</button>
-      <Link to='/home'>
-      <button className={style.buton}>To Home</button>
-      </Link>
-    </form>
+        {errors.healthscore && <span className={style.error}>{errors.healthscore}</span>}
+
+        <button className={style.Sbutton} type="submit">CREATE RECIPE</button>
+      </form>
+      {successMessage && (
+        <div className="success-message">{successMessage}</div>
+      )}
     </div>
-    </div>
-    
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
+  return {
     dietTypes: state.dietTypes
-  });
+  };
+};
 
-const mapDispatchToProps = {
-  createRecipe,
-  getDietTypes
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getDietTypes: () => dispatch(getDietTypes()),
+    createRecipe: (formData) => dispatch(createRecipe(formData))
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
