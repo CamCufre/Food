@@ -109,8 +109,15 @@ export const orderByAlpha = (order) => {
 };
 
 export const getRecipeDetails = (id) => {
+
   return async (dispatch) => {
     try {
+      if (id === null) {
+        dispatch({
+          type: 'GET_RECIPE_DETAILS',
+          payload: null
+        })
+      }
       const response = await axios.get(`${API_URL}/recipes/${id}`);
       const recipe = response.data;
 
