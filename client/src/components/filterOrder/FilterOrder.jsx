@@ -35,6 +35,7 @@ class FilterOrder extends Component {
   };
 
   handleFilterOrigin = (event) => {
+    this.props.setCurrentPage(1)
     this.props.filterByCreated(event.target.value);
   };
 
@@ -48,19 +49,19 @@ class FilterOrder extends Component {
     return (
       <div className={style.container}>
         <select className={style.select} name="orderAZ" onChange={this.handleAZOrder}>
-          <option value='name'>Order by A-Z</option>
+          <option value='none'>Order by A-Z</option>
           <option value="A">A-Z</option>
           <option value="D">Z-A</option>
         </select>
 
         <select className={style.select} name="orderHS" onChange={this.handleHealthscoreOrder}>
-          <option value='name'>Order by Health-Score</option>
+          <option value='none'>Order by Health-Score</option>
           <option value="Max">Max</option>
           <option value="Min">Min</option>
         </select>
 
         <select className={style.select} name="filterD" onChange={this.handleFilterDiets}>
-          <option value='name'>Filter by Diet-type</option>
+          <option value='none'>Filter by Diet-type</option>
           {dietTypes.map((diet) => (
             <option key={diet.id} value={diet.name}>
               {diet.name}
@@ -69,7 +70,7 @@ class FilterOrder extends Component {
         </select>
 
         <select className={style.select} name="filterO" onChange={this.handleFilterOrigin}>
-          <option value='name'>Filter by origin</option>
+          <option value='none'>Filter by origin</option>
           <option value="db">created recipes</option>
           <option value="api">web recipes</option>
         </select>
