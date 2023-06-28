@@ -22,7 +22,11 @@
 .input {
     width: 35px;
     margin-right: 5px;
-    border-color: transparent;
+    border-color: rgb(218, 218, 218);
+    border-style: solid;
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
     font-family: 'Sage Sans';
     text-align: center;
+    height: 15px;
 }
