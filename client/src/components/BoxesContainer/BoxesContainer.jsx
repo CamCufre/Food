@@ -4,13 +4,14 @@ import { getAllRecipes } from '../redux/actions';
 import RecipeBox from "../recipebox/RecipeBox";
 import Pagination from "../pagination/Pagination";
 import style from './BoxesContainer.module.css'
+import { NotFound } from "./notfound";
 
 const BoxesContainer = ({ recipes, getAllRecipes, currentPage, setCurrentPage }) => {
   useEffect(() => {
     getAllRecipes();
   }, []);
 
-  const recipesPerPage = 15;
+  const recipesPerPage = 9;
   const totalPages = Math.ceil(recipes.length / recipesPerPage);
 
   const handlePageChange = (page) => {
@@ -48,7 +49,7 @@ const BoxesContainer = ({ recipes, getAllRecipes, currentPage, setCurrentPage })
         handleNextPage={handleNextPage}
       />   
       {recipes.length === 0 ? (
-        <div className={style.error}>No recipes found.</div>
+        <NotFound/>
       ) : (
         <div className={style.container}>
           {recipeBoxes}
