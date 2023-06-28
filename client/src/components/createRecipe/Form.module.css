@@ -1,73 +1,167 @@
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 70px;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 400px;
-    padding: 20px;
-    border-color: transparent;
-    border-radius: 10px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 2px 2px 18px 2px rgba(184, 184, 184, 0.482);
-  }
-  
-  .label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-  }
-  
-  .description {
-    height: 60px;
-    width: 300px;
-    border-radius: 0.5em;
-  }
-  
-  .addcustom {
-    display: flex;
-    padding-top: 10px;
-    justify-content: center;
-  }
-
-  .buton {
-    font-family: 'Sage Sans';
-    margin-top: 10px;
-    border-radius: 5px;
-    border-color: rgb(174, 174, 174);
-    border-style: none;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .buton:hover {
-    background-color: rgb(255, 86, 86);
-    transition: 1s ease;
-  }
-
-  .error {
-    color: red;
-  }
-
-.p {
-  display: inline;
-  margin-left: 5px;
-  margin-right: 5px;
-  color: rgb(177, 177, 177);
+.form {
+    box-shadow: 0px 0px 10px rgb(199, 199, 199);
+    display:grid;
+    width: 500px;
+    min-height: 600px;
+    padding: 1.5%;
+    padding-left: 7%;
+    padding-right: 7%;
+    margin-top: -14px;
+    background: linear-gradient(to right,  rgba(184, 220, 255, 0.700), rgb(153,102,204, 0.700));
+    z-index: -1;
 }
 
-.custom {
-  font-family: 'Wedges';
-  background: linear-gradient(to right, rgb(255,247,125), rgb(184,219,255), rgb(153,102,204));
+.button {
+    font-family: 'Sage Sans';
+    font-weight: bolder;
+    border-color: transparent;
+    border-radius: 3px;
+    background-color: rgb(255, 247, 125);
+}
+
+.button:hover {
+    background-color: rgb(255, 86, 86);
+    transition: 0.6s ease;
+    cursor: pointer;
+}
+
+.error {
+    font-size: 14px;
+    font-weight: bolder;
+    margin-top: 1px;
+    margin-bottom: 2px;
+    color: rgb(255, 86, 86);
+}
+
+.input {
+    border-color: transparent;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 22px;
+    border-radius: 2px;
+    font-family: 'Sage Sans';
+    font-size: 15px;
+    box-shadow: 0px 5px 5px rgba(90, 90, 90, 0.335);
+}
+
+.Sbutton {
+    font-family: 'Sage Sans';
+    font-weight: bolder;
+    font-size: 17px;
+    border-color: transparent;
+    border-radius: 3px;
+    background-color: rgb(255, 247, 125);
+    width: 150px;
+    margin-left: 170px;
+    height: 35px;
+    box-shadow: 0px 5px 5px rgba(90, 90, 90, 0.335);
+}
+
+.Sbutton:hover {
+    background-color: rgb(255, 86, 86);
+    color: white;
+    transition: 0.6s ease;
+    cursor: pointer;
+    box-shadow: 0px 2px 8px rgba(255, 86, 86, 0.623),
+    0px 2px 10px rgba(255, 86, 86, 0.375);
+}
+
+.Xinput {
+    border-color: transparent;
+    height: 22px;
+    font-family: 'Sage Sans';
+    font-size: 15px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    margin-top: 5px;
+}
+
+.Xbutton {
+    font-family: 'Sage Sans';
+    font-weight: bolder;
+    border-color: transparent;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: rgb(255, 247, 125);
+    margin-bottom: 10px;
+    box-shadow: 0px 5px 5px rgba(90, 90, 90, 0.335);
+}
+
+.Xbutton:hover {
+    background-color: rgb(255, 86, 86);
+    transition: 0.6s ease;
+    cursor: pointer;
+}
+
+.textarea {
+    border-color: transparent;
+    border-radius: 3px;
+    font-family: 'Sage Sans';
+    font-size: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    resize: none;
+    height: 80px;
+    box-shadow: 0px 5px 5px rgba(90, 90, 90, 0.335);
+}
+
+.select {
+    border-color: transparent;
+    font-family: 'Sage Sans';
+    font-size: 15px;
+    border-radius: 3px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    color: rgb(115, 115, 115);
+}
+
+.added {
+    border-color: transparent;
+    width: 128px;
+    font-family: 'Sage Sans';
+    font-size: 15px;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    border-radius: 3px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(90, 90, 90, 0.198);
+}
+
+.create {
+    font-family: 'Wedges';
+    /* background: linear-gradient(to left, rgb(255,247,125), rgb(153,102,204));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 35px;
+    -webkit-text-fill-color: transparent; */
+    text-align: center;
+    font-size: 30px;
+    margin: 5px;
+    color: rgb(255, 255, 255);
+}
+
+.image {
+    position: absolute;
+    width: 600px;
+    left: 55%;
+    top: 23%
+}
+
+.tohome {
+    position: absolute;
+    right: 3.5%;
+    top: 23%;
+    font-family: 'Sage Sans';
+    border-color: transparent;
+    height: 35px;
+    width: 75px;
+    border-radius: 2em;
+    background-color: rgb(184,219,255);
+    z-index: 3;
+}
+
+.tohome:hover {
+    background-color: rgb(153,102,204);
+    transition: 0.8s ease;
+    cursor: pointer;
 }
