@@ -59,7 +59,7 @@ if (checkRecipesDB) {
 
     // const stepsBystep = data.analyzedInstructions[0].steps.map(step => step.step)
 
-    // const associatedDiet = {
+    // const associatedDiet = [{
     //   id: filteredRecipes.id,
     //   name: filteredRecipes.title,
     //   image: filteredRecipes.image, //comentalo pa usar el json
@@ -67,7 +67,7 @@ if (checkRecipesDB) {
     //   healthScore: filteredRecipes.healthScore,
     //   steps: stepsBystep.map((step, index) => `${index + 1}. ${step}`),
     //   diets: filteredRecipes.diets.join(', ')
-    // }
+    // }]
 
     // return res.status(200).json(associatedDiet);
 
@@ -81,7 +81,7 @@ if (checkRecipesDB) {
       name: recipe.title,
       image: recipe.image,
       description: recipe.summary.replace(/<[^>]*>/g, ''),
-      steps: recipe.analyzedInstructions[0].steps.map(step => step.step).map((step, index) => `${index + 1}. ${step}`),
+      steps: recipe.analyzedInstructions[0].steps.map(step => step.step),
       healthscore: recipe.healthScore,
       diets: recipe.diets.join(', ')
       }
@@ -178,7 +178,7 @@ const getResults = [
           name: recipe.title,
           image: recipe.image,
           description: recipe.summary.replace(/<[^>]*>/g, ''),
-          steps: recipe.analyzedInstructions[0].steps.map((step) => step.step).map((step, index) => `${index + 1}. ${step}`),
+          steps: recipe.analyzedInstructions[0].steps.map((step) => step.step),
           healthscore: recipe.healthScore,
           diets: recipe.diets.join(', '),
           created: false,
