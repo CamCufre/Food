@@ -17,10 +17,13 @@ const Details = ({ recipeDetails, getRecipeDetails }) => {
     steps: [''],
     id: ''
   });
-  console.log(recipeDetails);
 
   useEffect(() => {
     getRecipeDetails(id);
+
+    return () => {
+      getRecipeDetails(null)
+    }
   }, [getRecipeDetails, id]);
 
   useEffect(() => {
@@ -37,7 +40,7 @@ const Details = ({ recipeDetails, getRecipeDetails }) => {
     body.style.background = "white";
 
     return () => {
-      body.style.background = "";
+      body.style.background = "";;
     };
   }, []);
 
@@ -59,7 +62,7 @@ const Details = ({ recipeDetails, getRecipeDetails }) => {
         <div className={style.stepcontainer}>
           <h5 className={style.step}>{recipe.steps.map(
             (step, index) => {
-              return <p key={index}>{step}</p>
+              return <p key={index}>{index + 1}. {step}</p>
             }
           )}</h5>
         </div>
