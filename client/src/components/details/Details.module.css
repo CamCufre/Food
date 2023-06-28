@@ -17,7 +17,7 @@
 .foto {
     position: absolute;
     width: 300px;
-    height: auto;
+    height: 230px;
     clip-path: circle(42% at 50% 50%);
     left: 40%;
     top: 23%;
@@ -48,7 +48,7 @@
 
 .tohome {
     position: absolute;
-    left: 4.5%;
+    right: 3.5%;
     top: 23%;
     font-family: 'Sage Sans';
     border-color: transparent;
