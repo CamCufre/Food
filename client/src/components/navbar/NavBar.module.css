@@ -1,16 +1,18 @@
-.container {
+/* .container {
     background-color: rgb(255, 255, 255);
     height: 60px;
-    margin-top: 2px;
+    margin-top: -2px;
     margin-bottom: 15px;
     padding-bottom: 25px;
     padding-top: 15px;
-    box-shadow: 2px 2px 15px rgb(239, 239, 239);
+    position: fixed;
+    width: 100%;
+    z-index: 5;
 }
 
 .buttoncontainer {
     float: right;
-    margin-top: 12px;
+    margin-top: 18px;
     margin-right: 950px;
   }
 
@@ -38,5 +40,54 @@
 
 .img:hover {
     opacity: 0.9;
+    cursor: pointer;
     transition: 0.3s ease;
+} */
+
+.container {
+    position: fixed;
+    z-index: 3;
+    background-color: white;
+    margin-top: 0%;
+    top: 0%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    display: flex;
+    flex-direction: row;
+    /* place-content: center; */
+    align-items: center;
+    width: 100%;
+}
+
+.button {
+    display: inline-block;
+    border: transparent;
+    height: 35px;
+    background-color: transparent;
+    font-family: 'Sage Sans';
+    font-size: 15px;
+}
+
+.button:hover {
+    color: rgba(0, 0, 0, 0.811);
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.imgs {
+    flex:1;
+    margin-left: 10%;
+}
+
+.img:hover {
+    cursor: pointer;
+}
+
+.buttons {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 10%;
+    gap: 3em;
 }

@@ -1,0 +1,71 @@
+.boton {
+    border: transparent;
+    background-color: transparent;
+    font-family: 'Sage Sans';
+    font-size: 15px;
+    margin: 0%;
+}
+
+.boton:hover {
+    color: rgba(0, 0, 0, 0.811);
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.logicon {
+    max-width: 45px;
+    margin: 0%;
+    padding: 0%;
+}
+
+.logicon:hover {
+    cursor: pointer;
+}
+
+.logout {
+    border: transparent;
+    background-color: transparent;
+    font-family: 'Sage Sans';
+    font-size: 15px;
+}
+
+.logout:hover {
+    color: rgba(0, 0, 0, 0.811);
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.openbox {
+    border: transparent;
+    background-color: transparent;
+    color: rgb(183, 183, 183);
+}
+
+.greet {
+    position: absolute;
+    left: -120px;
+    top: -10px;
+    max-width: 100px;
+    text-align: left;
+}
+
+.panel {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 5px 10px rgba(159, 159, 159, 0.472);
+    height: max-content;
+    width: max-content;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 17%;
+    right: 7.5%;
+}
+
+.container {
+    margin: 0%;
+    padding: 0%;
+    display: flex;
+    align-items: center;
+}

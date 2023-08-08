@@ -1,21 +1,75 @@
-import {Link} from 'react-router-dom';
 import style from './RecipeBox.module.css';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const RecipeBox = ({id, name, image, healthscore, diets}) => {
-    
-    return (
-        <div className={style.recipe}>
-            <div className={style.circle} style={{ background: `url(${image})` }}></div>
-            <div className={style.box}>
-            <Link to={`/recipeDetails/${id}`}>
-            <h2 className={style.name}>{name}</h2>
-            </Link>
+const RecipeBox = ({ id, name, image, healthscore, diets }) => {
+  const navigate = useNavigate();
+  const [flippedCards, setFlippedCards] = useState({});
+
+  const handleCardClick = (id) => {
+    setFlippedCards((prevFlippedCards) => ({
+      ...prevFlippedCards,
+      [id]: !prevFlippedCards[id],
+    }));
+  };
+
+  const navigateRecipe = () => {
+    navigate(`/recipeDetails/${id}`);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  const handleMouseEnter = (id) => {
+    setFlippedCards((prevFlippedCards) => ({
+      ...prevFlippedCards,
+      [id]: true,
+    }));
+  };
+
+  const handleMouseLeave = (id) => {
+    setFlippedCards((prevFlippedCards) => ({
+      ...prevFlippedCards,
+      [id]: false,
+    }));
+  };
+
+  return (
+    <div
+      className={style.recipe}
+      onMouseEnter={() => handleMouseEnter(id)}
+      onMouseLeave={() => handleMouseLeave(id)}
+    >
+      {/* <div className={style.circle} style={{ background: `url(${image})` }}></div> */}
+      <div
+        className={`${style.box} ${flippedCards[id] ? style.flipped : ''}`}
+        style={{
+          background: `${flippedCards[id] ? 'white' : `url(${image})`}`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+        onClick={() => handleCardClick(id)}
+      >
+        {!flippedCards[id] ? (
+          <div className={style.bb}>
+            <h2 onClick={navigateRecipe} className={style.name}>
+              {name}
+            </h2>
+          </div>
+        ) : (
+          <div className={style.flippedContent}>
             <h5 className={style.id}>ID: {id}</h5>
-            <h5 className={style.hs}>Health-Score: {healthscore} </h5>
-            <h5 className={style.diets}>Diets: {diets}. </h5>
-            </div>
-        </div>
-    )
-}
+            <h5 className={style.hs}><span style={{color:"rgb(214, 214, 214)"}}>Health-Score:</span> {healthscore} </h5>
+            <h5 className={style.diets}>
+            <span style={{color:"rgb(214, 214, 214)"}}>Diets:</span> {diets.length !== 0 ? diets : 'not related diets'}.{' '}
+            </h5>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default RecipeBox;

@@ -130,3 +130,10 @@ export const getRecipeDetails = (id) => {
     }
   };
 };
+
+export const didLog = (value) => {
+  return {
+    type: 'DID_LOG',
+    payload: value
+  }
+}

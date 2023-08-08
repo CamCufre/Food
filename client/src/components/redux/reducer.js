@@ -2,7 +2,8 @@
     allHomeRecipes: [],
     allHomeRecipesCopy: [],
     dietTypes: [],
-    recipeDetails: null
+    recipeDetails: null,
+    didLog: false
   };
   
   const reducer = (state = initialState, { type, payload }) => {
@@ -67,6 +68,11 @@
         return {
           ...state,
           recipeDetails: payload
+        }
+      case 'DID_LOG':
+        return {
+          ...state,
+          didLog: payload
         }
       default:
         return state;

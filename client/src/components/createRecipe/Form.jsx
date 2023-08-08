@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { getDietTypes, createRecipe } from "../redux/actions";
 import ValidateForm from "../Validation/Validation";
-import NavBar from '../navbar/NavBar';
 import style from './Form.module.css';
 import image from '../assets/bg-images/form-img.png';
 import { Link } from "react-router-dom";
@@ -163,8 +162,7 @@ const Form = ({ dietTypes, getDietTypes, createRecipe }) => {
   };
 
   return (
-    <div>
-      <NavBar/>
+    <div style={{marginTop:"8%"}}>
       <Link to='/home'>
       <button className={style.tohome}>To Home</button>
       </Link>

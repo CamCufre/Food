@@ -1,7 +1,6 @@
 .pagination {
-    position: absolute;
-    left: 40%;
-    top: 37%
+    display: flex;
+    justify-content: center;
 }
 
 .buttonRight {

@@ -40,14 +40,7 @@ const BoxesContainer = ({ recipes, getAllRecipes, currentPage, setCurrentPage })
     ));
 
   return (
-    <div>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        handlePrevPage={handlePrevPage}
-        handlePageChange={handlePageChange}
-        handleNextPage={handleNextPage}
-      />   
+    <div style={{paddingBottom:"5%"}}>
       {recipes.length === 0 ? (
         <NotFound/>
       ) : (
@@ -55,6 +48,13 @@ const BoxesContainer = ({ recipes, getAllRecipes, currentPage, setCurrentPage })
           {recipeBoxes}
         </div>
       )}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        handlePrevPage={handlePrevPage}
+        handlePageChange={handlePageChange}
+        handleNextPage={handleNextPage}
+      />   
     </div>
   );
 };

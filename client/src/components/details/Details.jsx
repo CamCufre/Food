@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import { getRecipeDetails } from "../redux/actions";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import NavBar from '../navbar/NavBar';
 import style from './Details.module.css'
 import { Link } from "react-router-dom";
 
@@ -45,28 +44,30 @@ const Details = ({ recipeDetails, getRecipeDetails }) => {
   }, []);
 
   return (
-    <div>
-      <div>
-        <NavBar />
-      </div>
+    <div className={style.all}>
       <Link to='/home'>
       <button className={style.tohome}>To Home</button>
       </Link>
-      <img className={style.foto} alt='' src={recipe.image}/>
+      <div className={style.foto} style={{ background:`url(${recipe.image})`, width:"200px", height:"200px", backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', borderRadius:"50%"}}></div>
       <div className={style.details}>
         <h1 className={style.title}>{recipe.name}</h1>
         <h5 className={style.id}>recipe ID: {recipe.id}</h5>
         <h5 className={style.diets}>Diets: {diets}. Health-Score: {recipe.healthscore}</h5>
         <h5 className={style.description}>{recipe.description}</h5>    
-        <h5 className={style.steptitle}>Instructions:</h5>
         <div className={style.stepcontainer}>
-          <h5 className={style.step}>{recipe.steps.map(
-            (step, index) => {
-              return <p key={index}>{index + 1}. {step}</p>
-            }
-          )}</h5>
+        <h5 className={style.steptitle}>Instructions:</h5>
+        <h5 className={style.step}>
+      {recipe.steps.map((step, index) => {
+        const colorStyle = index % 2 === 0 ? { color: "rgb(184, 219, 255)" } : { color: "rgb(181, 133, 230)" };
+        return (
+          <p key={index}>
+            <span style={colorStyle}>{index + 1}. </span>
+            {step}
+          </p>
+        );
+      })}
+    </h5>
         </div>
-        
       </div>
     </div>
   );
