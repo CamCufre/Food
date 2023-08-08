@@ -27,15 +27,6 @@ const Form = ({ dietTypes, getDietTypes, createRecipe }) => {
     }
   }, [formSubmitted]);
 
-  useEffect(() => {
-    const body = document.querySelector("body");
-    body.style.background = "white";
-
-    return () => {
-      body.style.background = "";
-    };
-  }, []);
-
   const [formData, setFormData] = useState({
     name: "",
     description: "",

@@ -34,15 +34,6 @@ const Details = ({ recipeDetails, getRecipeDetails }) => {
     }
   }, [recipeDetails]);
 
-  useEffect(() => {
-    const body = document.querySelector("body");
-    body.style.background = "white";
-
-    return () => {
-      body.style.background = "";;
-    };
-  }, []);
-
   return (
     <div className={style.all}>
       <Link to='/home'>
