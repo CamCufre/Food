@@ -6,13 +6,6 @@ const RecipeBox = ({ id, name, image, healthscore, diets }) => {
   const navigate = useNavigate();
   const [flippedCards, setFlippedCards] = useState({});
 
-  const handleCardClick = (id) => {
-    setFlippedCards((prevFlippedCards) => ({
-      ...prevFlippedCards,
-      [id]: !prevFlippedCards[id],
-    }));
-  };
-
   const navigateRecipe = () => {
     navigate(`/recipeDetails/${id}`);
     window.scrollTo({
@@ -42,7 +35,6 @@ const RecipeBox = ({ id, name, image, healthscore, diets }) => {
       onMouseLeave={() => handleMouseLeave(id)}
       onClick={navigateRecipe}
     >
-      {/* <div className={style.circle} style={{ background: `url(${image})` }}></div> */}
       <div
         className={`${style.box} ${flippedCards[id] ? style.flipped : ''}`}
         style={{
@@ -51,7 +43,6 @@ const RecipeBox = ({ id, name, image, healthscore, diets }) => {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
         }}
-        // onClick={() => handleCardClick(id)}
       >
         {!flippedCards[id] ? (
           <div className={style.bb}>
