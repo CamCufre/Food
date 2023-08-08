@@ -7,7 +7,7 @@
     padding-left: 7%;
     padding-right: 7%;
     margin-top: -14px;
-    background: linear-gradient(to right,  rgba(184, 220, 255, 0.700), rgb(153,102,204, 0.700));
+    background: linear-gradient(to right,  rgba(255, 86, 86, 0.700), rgb(255, 150, 64, 0.700));
     z-index: -1;
 }
 
@@ -131,9 +131,6 @@
 
 .create {
     font-family: 'Wedges';
-    /* background: linear-gradient(to left, rgb(255,247,125), rgb(153,102,204));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
     text-align: center;
     font-size: 30px;
     margin: 5px;
@@ -156,12 +153,12 @@
     height: 35px;
     width: 75px;
     border-radius: 2em;
-    background-color: rgb(184,219,255);
+    background-color: rgb(255, 247, 125);
     z-index: 3;
 }
 
 .tohome:hover {
-    background-color: rgb(153,102,204);
+    background-color: rgb(115, 179, 83);
     transition: 0.8s ease;
     cursor: pointer;
 }
