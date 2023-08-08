@@ -9,12 +9,12 @@
 }
 
 body {
-  background-image: URL('./components/assets/bg-images/landing-bg.svg');
+  /* background-image: URL('./components/assets/bg-images/landing-bg.svg');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
+  background-repeat: no-repeat; */
+  min-height: 100vh;
+  min-width: 100vh;
   margin: 1px;
   font-family: 'Sage Sans', 'Wedges';
   -webkit-font-smoothing: antialiased;

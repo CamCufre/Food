@@ -58,7 +58,7 @@ const Details = ({ recipeDetails, getRecipeDetails }) => {
         <h5 className={style.steptitle}>Instructions:</h5>
         <h5 className={style.step}>
       {recipe.steps.map((step, index) => {
-        const colorStyle = index % 2 === 0 ? { color: "rgb(184, 219, 255)" } : { color: "rgb(181, 133, 230)" };
+        const colorStyle = index % 2 === 0 ? { color: "rgb(255, 150, 64)" } : { color: "rgb(255, 86, 86)" };
         return (
           <p key={index}>
             <span style={colorStyle}>{index + 1}. </span>

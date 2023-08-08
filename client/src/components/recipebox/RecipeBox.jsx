@@ -38,7 +38,7 @@ const RecipeBox = ({ id, name, image, healthscore, diets }) => {
       <div
         className={`${style.box} ${flippedCards[id] ? style.flipped : ''}`}
         style={{
-          background: `${flippedCards[id] ? 'white' : `url(${image})`}`,
+          background: `url(${image})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -51,12 +51,14 @@ const RecipeBox = ({ id, name, image, healthscore, diets }) => {
             </h2>
           </div>
         ) : (
+          <div className={style.flippedbg}>
           <div className={style.flippedContent}>
             <h5 className={style.id}>ID: {id}</h5>
             <h5 className={style.hs}><span style={{color:"rgb(214, 214, 214)"}}>Health-Score:</span> {healthscore} </h5>
             <h5 className={style.diets}>
             <span style={{color:"rgb(214, 214, 214)"}}>Diets:</span> {diets.length !== 0 ? diets : 'not related diets'}.{' '}
             </h5>
+          </div>
           </div>
         )}
       </div>

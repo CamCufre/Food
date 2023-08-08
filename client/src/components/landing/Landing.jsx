@@ -5,7 +5,11 @@ const Landing = () => {
     
     const navigate = useNavigate();
     const toHome = () => {
-      navigate('/home')
+      navigate('/home');
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
     };
 
     return(

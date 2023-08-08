@@ -22,13 +22,13 @@ const ColorRotatingText = ({ text }) => {
       {text.split('').map((char, index) => {
         let charColor;
         if (index % 4 === colorIndex) {
-          charColor = { color: "rgb(255, 247, 125)" };
+          charColor = { color: "rgb(115, 179, 83)" }; // verde
         } else if ((index + 1) % 4 === colorIndex) {
-          charColor = { color: "rgb(115, 179, 83)" };
+          charColor = { color: "rgb(255, 247, 125)" }; // amarillo
         } else if ((index + 2) % 4 === colorIndex) {
-          charColor = { color: "rgb(184, 219, 255)" };
+          charColor = { color: "rgb(255, 86, 86)" }; // rojo
         } else {
-          charColor = { color: "rgb(181, 133, 230)" };
+          charColor = { color: "rgb(255, 150, 64)" }; // naranja
         }
         return (
           <span key={index} style={charColor}>{char}</span>

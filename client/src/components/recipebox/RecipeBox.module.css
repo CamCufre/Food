@@ -46,6 +46,15 @@
 
 .flippedContent {
     transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 252px;
+    height: 252px;
+    border-radius: 1em;
+    gap: 1em;
   }
 
 .name {
@@ -67,28 +76,21 @@ a {
 .hs {
     text-align: center;
     color: rgb(138, 138, 138);
+    margin: 0%;
 }
 
 .diets {
     text-align: center;
     max-width: 220px;
     color: rgb(138, 138, 138);
+    margin: 0%;
 }
 
 .id {
     text-align: center;
     font-size: 12px;
     color: rgb(214, 214, 214);
-}
-
-.circle {
-    position: absolute;
-    height: 130px;
-    width: 130px;
-    border-radius: 100%;
-    margin-left: 4.3%;
-    margin-top: -5.6%;
-    box-shadow: 0px 2px 10px 0 rgba(149, 149, 149, 0.729);
+    margin: 0%;
 }
 
 .recipe:hover {
