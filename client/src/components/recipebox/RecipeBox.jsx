@@ -40,6 +40,7 @@ const RecipeBox = ({ id, name, image, healthscore, diets }) => {
       className={style.recipe}
       onMouseEnter={() => handleMouseEnter(id)}
       onMouseLeave={() => handleMouseLeave(id)}
+      onClick={navigateRecipe}
     >
       {/* <div className={style.circle} style={{ background: `url(${image})` }}></div> */}
       <div
@@ -50,11 +51,11 @@ const RecipeBox = ({ id, name, image, healthscore, diets }) => {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
         }}
-        onClick={() => handleCardClick(id)}
+        // onClick={() => handleCardClick(id)}
       >
         {!flippedCards[id] ? (
           <div className={style.bb}>
-            <h2 onClick={navigateRecipe} className={style.name}>
+            <h2 className={style.name}>
               {name}
             </h2>
           </div>
